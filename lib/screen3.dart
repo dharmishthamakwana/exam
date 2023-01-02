@@ -1,210 +1,177 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'screen2.dart';
 
-class Home1 extends StatefulWidget {
-  const Home1({Key? key}) : super(key: key);
+class Page3 extends StatefulWidget {
+  const Page3({Key? key}) : super(key: key);
 
   @override
-  State<Home1> createState() => _HomeState();
+  State<Page3> createState() => _Page3State();
 }
 
-class _HomeState extends State<Home1> {
+class _Page3State extends State<Page3> {
+
+  List name = [
+    "juice",
+    "coffee",
+    "fast food",
+    "hoey water",
+    "juice",
+    "coffee",
+  ];
+  List price = [
+    "\$45",
+    "\$45",
+    "\$45",
+    "\$45",
+    "\$45",
+    "\$45",
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.pink,
-        ),
         body: SingleChildScrollView(
-          child: Column(
+          child: Stack(
             children: [
               Container(
-                height: 80,
-                width: 500,
-                decoration: const BoxDecoration(
+                  height: 75,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
                     color: Colors.pink,
                     borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(50),
-                        bottomLeft: Radius.circular(50))),
-                child: Padding(
-                  padding: EdgeInsets.all(20),
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                  ),
                   child: TextField(
                     decoration: InputDecoration(
-                        hintText: "Search",
-                        prefixIconColor: Colors.white,
-                        prefixIcon:
-                            Icon(Icons.search_outlined, color: Colors.white),
-                        fillColor: Colors.white,
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(50))),
-                  ),
+                      icon: Icon(Icons.search,color: Colors.white,),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: Column(
+                  children: name.asMap().entries.map((e) => Buy(name[e.key], price[e.key])).toList(),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Home1(),
-                                ));
-                          });
-                        },
-                        child: Container(
-                          height: 200,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                  color: Colors.grey,
-                                  style: BorderStyle.solid,
-                                  width: 3)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text("🥤", style: TextStyle(fontSize: 100)),
-                                Text("Juice",
-                                    style: TextStyle(
-                                        fontSize: 25, letterSpacing: 2)),
-                              ]),
-                        ),
-                      ),
-                      Container(
-                        height: 200,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                color: Colors.grey,
-                                style: BorderStyle.solid,
-                                width: 3)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("🧋", style: TextStyle(fontSize: 100)),
-                              Text("Coffee",
-                                  style: TextStyle(
-                                      fontSize: 25, letterSpacing: 2)),
-                            ]),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 200,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                color: Colors.grey,
-                                style: BorderStyle.solid,
-                                width: 3)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("🍔", style: TextStyle(fontSize: 100)),
-                              Text("Burger",
-                                  style: TextStyle(
-                                      fontSize: 25, letterSpacing: 2)),
-                            ]),
-                      ),
-                      Container(
-                        height: 200,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                color: Colors.grey,
-                                style: BorderStyle.solid,
-                                width: 3)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("🍯", style: TextStyle(fontSize: 100)),
-                              Text("  Honey Water",
-                                  style: TextStyle(
-                                      fontSize: 18, letterSpacing: 2)),
-                            ]),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 200,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                color: Colors.grey,
-                                style: BorderStyle.solid,
-                                width: 3)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("🍟", style: TextStyle(fontSize: 100)),
-                              Text("Chips",
-                                  style: TextStyle(
-                                      fontSize: 25, letterSpacing: 2)),
-                            ]),
-                      ),
-                      Container(
-                        height: 200,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                color: Colors.grey,
-                                style: BorderStyle.solid,
-                                width: 3)),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("🥣", style: TextStyle(fontSize: 100)),
-                              Text("Soup",
-                                  style: TextStyle(
-                                      fontSize: 25, letterSpacing: 2)),
-                            ]),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              )
             ],
           ),
         ),
       ),
+    );
+  }
+  Widget Buy(String name, String price)
+  {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: Expanded(
+            child: Container(
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                  color: Colors.white10,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.white70,
+                        offset: Offset(2, 2))
+                  ]),
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/images/sneakers.webp",
+                    height: 75,
+                    width: 75,
+                  ),
+                  Text(
+                    "$name",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "$price  ",
+                        style: TextStyle(
+                            color: Colors.pink,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: "\$79",
+                        style: TextStyle(
+                          color: Colors.black26,
+                          fontSize: 18,
+                          decoration:
+                          TextDecoration.lineThrough,
+                        ),
+                      ),
+                    ]),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: Expanded(
+            child: Container(
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                  color: Colors.white10,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.white70,
+                        offset: Offset(2, 2))
+                  ]),
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/images/sneakers.webp",
+                    height: 75,
+                    width: 75,
+                  ),
+                  Text(
+                    "${name}",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "\$45  ",
+                        style: TextStyle(
+                            color: Colors.pink,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: "\$79",
+                        style: TextStyle(
+                          color: Colors.black26,
+                          fontSize: 18,
+                          decoration:
+                          TextDecoration.lineThrough,
+                        ),
+                      ),
+                    ]),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,126 +1,240 @@
+import 'package:exam/screen1.dart';
+import 'package:exam/screen2.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Page1 extends StatefulWidget {
+  const Page1({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Page1> createState() => _Page1State();
 }
 
-class _HomeState extends State<Home> {
+class _Page1State extends State<Page1> {
+
+  List name = [
+    "sneakers",
+    "sneakers",
+    "sneakers",
+    "sneakers",
+    "sneakers",
+    "sneakers",
+  ];
+  List price = [
+    "\$45",
+    "\$45",
+    "\$45",
+    "\$45",
+    "\$45",
+    "\$45",
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.pink,
-          leading: Icon(Icons.account_circle_rounded),
-          title: Text("Name"),
-          actions: [Icon(Icons.shopping_bag_outlined)],
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-
-            Row(
-              children: [
-                SizedBox(width: 30),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                    height: 180,
-                    width: 200,
-                    color: Colors.blue.shade50,
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Container(
+                height: 75,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.pink,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
                   ),
                 ),
-                SizedBox(width: 40),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                    height: 180,
-                    width: 200,
-                    color: Colors.blue.shade50,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(width: 30),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                    height: 180,
-                    width: 200,
-                    color: Colors.blue.shade50,
-                  ),
-                ),
-                SizedBox(width: 40),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                    height: 180,
-                    width: 200,
-                    color: Colors.blue.shade50,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(width: 30),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                    height: 180,
-                    width: 200,
-                    color: Colors.blue.shade50,
-                  ),
-                ),
-                SizedBox(width: 40),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                    height: 180,
-                    width: 200,
-                    color: Colors.blue.shade50,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 500,
-                      height: 50,
-                      color: Colors.red,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          Center(child: Icon(Icons.account_balance,size: 50,)),
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 40),
-                              child: Icon(Icons.shopping_bag,size: 50),
-                            )
-                          ),
-                        ],
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_circle,
+                        color: Colors.white,
+                        size: 40,
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Name",
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                      SizedBox(
+                        width: 150,
+                      ),
+                      Icon(
+                        Icons.shopping_bag,
+                        size: 40,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-
-          ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: Column(
+                  children: name.asMap().entries.map((e) => Buy(name[e.key], price[e.key])).toList(),
+                ),
+              )
+            ],
+          ),
         ),
       ),
+    );
+  }
+  Widget Buy(String name, String price)
+  {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: Expanded(
+            child: Container(
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                  color: Colors.white10,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.white70,
+                        offset: Offset(2, 2))
+                  ]),
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/images/sneakers.webp",
+                    height: 75,
+                    width: 75,
+                  ),
+                  Text(
+                    "$name",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "$price  ",
+                        style: TextStyle(
+                            color: Colors.pink,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: "\$79",
+                        style: TextStyle(
+                          color: Colors.black26,
+                          fontSize: 18,
+                          decoration:
+                          TextDecoration.lineThrough,
+                        ),
+                      ),
+                    ]),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Page2(name,price),));
+                      });
+                    },
+                    child: Container(
+                      height: 25,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          color: Colors.yellow,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Buy",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: Expanded(
+            child: Container(
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                  color: Colors.white10,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.white70,
+                        offset: Offset(2, 2))
+                  ]),
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/images/sneakers.webp",
+                    height: 75,
+                    width: 75,
+                  ),
+                  Text(
+                    "sneakers",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "\$45  ",
+                        style: TextStyle(
+                            color: Colors.pink,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: "\$79",
+                        style: TextStyle(
+                          color: Colors.black26,
+                          fontSize: 18,
+                          decoration:
+                          TextDecoration.lineThrough,
+                        ),
+                      ),
+                    ]),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Page2(name,price),));
+                      });
+                    },
+                    child: Container(
+                      height: 25,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          color: Colors.yellow,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Buy",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
